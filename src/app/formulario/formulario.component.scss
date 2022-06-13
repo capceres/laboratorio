@@ -1,0 +1,200 @@
+// estilos generales
+$bordeRad: 0.25rem;
+$color1: #343E47;
+$color2: #FFC301;
+$color3: #E1FFFF;
+$color4: #f2f2f2;
+$color5: #5F6A70;
+
+.title {
+  color: $color2;
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 100;
+  margin-bottom: 1rem;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid $color2;}
+
+  .title2{
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 100;
+    text-transform: uppercase;
+    border-bottom: 1px solid;
+    padding: 0 1.5rem;
+  }
+
+  .ns-only {
+    display: block !important;
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .oculto {
+    display: none;
+  }
+
+// formulario
+.formulario {
+  margin-bottom: 2rem;
+
+  fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 1.5rem;
+    background-color: $color2;
+    border: 0;
+    border-radius: $bordeRad;
+  }
+  legend {
+    float: left;
+    width: 100%;
+    font-size: 1.5rem;
+    padding-bottom: 2rem;
+  }
+  .formulario-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: .9rem;
+
+    .form6 {
+      max-width: 6rem;
+    }
+    .form8 {
+      max-width: 8rem;
+    }
+  }
+  .formExp {
+    width: 100%;
+    font-size: .8rem;
+    font-style: italic;
+    color:#343E47;
+    padding: 1rem 0 0;
+  }
+
+  .botonesReg {
+    display: inline-block;
+    margin: auto;
+
+    button {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+// listado de socios
+.listaSocios {
+  padding: 2rem 1.5rem;
+  margin: 1rem 0;
+  background-color: #fff;
+  border-radius: $bordeRad;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $color4;
+    border-radius: $bordeRad;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0rem 0.1rem 0.25rem #cbcbcb;
+
+      .datosSocio {
+        display: flex;
+        align-items: center;
+      }
+      .datosSocio-nom {
+        font-size: 1rem;
+        font-weight: 500;
+        padding-bottom: 0.1rem;
+      }
+      .datosSocio-num {
+        min-width: 15%;
+        color: $color5;
+        font-size: 1.5em;
+        font-weight: 100;
+      }
+      &.active {
+        border: 1px solid #ffc301;
+        box-shadow: 0rem 0rem 0.5rem #ffc301;
+      }
+      .datosSocio-dat {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 1%;
+      }
+    }
+
+    .datosSocio-gen {
+      font-weight: 100;
+      color: $color1;
+
+      span{
+        &:after{
+          content: "-";
+          opacity: 0.5;
+          padding: 0 0.5rem;
+        }
+        &:last-child{
+          &:after{
+            content: "";
+          }
+
+        }
+      }
+    }
+    .botonesSocio {
+      text-align: right;
+      button {
+        margin-left: 0.5rem;
+        margin-bottom: 0.25rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .formulario {
+    .mat-form-field{
+      width: 100%;
+    }
+  }
+  .listaSocios {
+    ul {
+      .botonesSocio {
+        margin: 1rem 0 0;
+      }
+      .datosSocio {
+        width: 100%;
+      }
+      .datosSocio-num {
+        padding-right: 0.5rem;
+      }
+      .datosSocio-dat {
+        margin-bottom: 1rem;
+      }
+      .datosSocio-gen {
+        span{
+          display: block;
+          &:after{
+            content: "";
+          }
+        }
+      }
+    }
+  }
+
+}

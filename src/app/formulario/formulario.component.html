@@ -1,0 +1,70 @@
+<h1 class="title">Gestión de socios</h1>
+<form [formGroup]="socios" (ngSubmit)="nuevoSocio()" class="formulario" >
+  <fieldset>
+    <legend class="ns-only">{{(editarSocio ? "Modifica tus datos": "Registro")}}</legend>
+    <div class="formulario-form">
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput #inputName [(ngModel)]="socios.value.nombre" formControlName="nombre" maxlength="30" minlength="3" placeholder="Nombre" required/>
+        <mat-hint>Mín 3 caracteres. {{ inputName.value?.length || 0 }}/3</mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Apellidos</mat-label>
+        <input matInput #inputSurname [(ngModel)]="socios.value.apellidos" formControlName="apellidos" maxlength="60" minlength="3" placeholder="Apellidos" required/>
+        <mat-hint>Mín 3 caracteres. {{ inputSurname.value?.length || 0 }}/3</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="socioNum">
+        <mat-label>Nº de socio</mat-label>
+        <input matInput [(ngModel)]="socios.value.socio" formControlName="socio" maxlength="4" max="9999" placeholder="Nº de socio"  required/>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>DNI</mat-label>
+        <input matInput [(ngModel)]="socios.value.dni" formControlName="dni" maxlength="9" placeholder="DNI" pattern="[0-9]{8}[A-Za-z]{1}" required/>
+        <mat-hint>8 caracteres + letra.</mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Teléfono</mat-label>
+        <input matInput [(ngModel)]="socios.value.telefono" formControlName="telefono" maxlength="10" placeholder="Teléfono" required/>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Sexo</mat-label>
+        <mat-select [(ngModel)]="socios.value.sexo" formControlName="sexo" placeholder="Selecciona una opción" required>
+          <mat-option value="Femenino">Femenino</mat-option>
+          <mat-option value="Masculino">Masculino</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p class="formExp">Todos los campos marcados con * son obligatorios.</p>
+    </div>
+    <div class="botonesReg">
+      <button ype="submit" mat-raised-button [disabled]="socios.invalid" color="primary">{{(editarSocio ? "Modificar" : "Añadir")}}</button>
+    <button type="reset" mat-raised-button (click)="reset()" color="accent">Reset</button>
+    </div>
+  </fieldset>
+</form>
+<h2 class="title2">Socios registrados</h2>
+<div #listasocios class="listaSocios">
+  <div class="listaSocios-vacia" [ngClass]="{'oculto': !sociosVacia}">
+    <p>No hay socios registrados.</p>
+  </div>
+  <ul>
+    <li *ngFor="let elemento of sociosList; let i=index" #itemSocio{{i+1}} id="itemSocio{{i+1}}" [ngClass]="{'active': editarSocio && indexSocio == i}" class="itemSocio">
+      <div class="datosSocio">
+        <span class="datosSocio-num">{{elemento.socio}} </span>
+        <div class="datosSocio-dat">
+          <div class="datosSocio-nom">
+            <span class="">{{elemento.nombre}} {{elemento.apellidos}} </span>
+          </div>
+          <div class="datosSocio-gen">
+            <span class="datosSocio-dni">DNI: {{elemento.dni}} </span>
+            <span class="datosSocio-tel">Teléfono: {{elemento.telefono}} </span>
+            <span class="datosSocio-sex">Sexo: {{elemento.sexo}} </span>
+          </div>
+        </div>
+      </div>
+      <div class="botonesSocio">
+        <button (click)="modificar(i)" mat-raised-button color="primary">modificar</button>
+        <button (click)="eliminar(i)" mat-raised-button color="warn">eliminar</button>
+      </div>
+    </li>
+  </ul>
+</div>

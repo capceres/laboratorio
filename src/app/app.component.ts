@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+// import { Socio } from './formulario/formulario.component';
+// import { Socio } from './models/socio';
 
 @Component({
   selector: 'app-root',
